@@ -112,5 +112,16 @@ def atualiza_produto():
 
     return redirect('/lista')
 
+@app.route('/excluir/<int:id>')
+def excluir_produto(id):
+    Produto.query.filter_by(id = id).delete()
+
+    db.session.commit()
+
+    return redirect('lista')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 app.run(debug=True)
